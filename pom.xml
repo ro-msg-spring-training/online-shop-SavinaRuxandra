@@ -81,7 +81,7 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<url>jdbc:h2:mem:onlineShop</url>
+					<url>jdbc:h2:~/shop-database/h2</url>
 					<user>ruxi</user>
 					<password>incorrect</password>
 					<locations>filesystem:src/main/resources/db/migration</locations>

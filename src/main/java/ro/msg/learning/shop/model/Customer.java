@@ -1,13 +1,18 @@
 package ro.msg.learning.shop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+
 public class Customer extends BaseEntity<Integer> {
 
     private String lastName;
@@ -16,14 +21,4 @@ public class Customer extends BaseEntity<Integer> {
     private String password;
     private String emailAddress;
 
-    public Customer(String lastName, String firstName, String username, String password, String emailAddress) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.username = username;
-        this.password = password;
-        this.emailAddress = emailAddress;
-    }
-
-    public Customer() {
-    }
 }
