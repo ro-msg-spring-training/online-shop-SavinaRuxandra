@@ -60,6 +60,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -86,6 +87,7 @@
 					<password>incorrect</password>
 					<locations>filesystem:src/main/resources/db/migration</locations>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>

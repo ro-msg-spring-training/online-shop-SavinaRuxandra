@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,5 +18,7 @@ public class Location extends BaseEntity<Integer> {
 
     private String name;
     private Address address;
+    @OneToMany(mappedBy = "location")
+    private List<Stock> stocks;
 
 }

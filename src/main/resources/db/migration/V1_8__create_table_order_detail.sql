@@ -1,8 +1,10 @@
 CREATE TABLE IF NOT EXISTS `order_detail` (
 
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `order` int REFERENCES order(id),
+    `order` int REFERENCES `order`(id),
     `product` int REFERENCES product(id),
     `quantity` int
 
 );
+
+ALTER TABLE `order_detail` ADD CONSTRAINT UQ_order_product UNIQUE (`order`, product)

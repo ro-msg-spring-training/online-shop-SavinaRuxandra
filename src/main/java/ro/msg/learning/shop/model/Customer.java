@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-
 public class Customer extends BaseEntity<Integer> {
 
     private String lastName;

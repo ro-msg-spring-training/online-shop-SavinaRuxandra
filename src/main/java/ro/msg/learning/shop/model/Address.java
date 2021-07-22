@@ -1,10 +1,12 @@
 package ro.msg.learning.shop.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Builder
 @Data
 public class Address {
 

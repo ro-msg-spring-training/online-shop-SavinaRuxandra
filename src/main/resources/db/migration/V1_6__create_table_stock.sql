@@ -6,3 +6,5 @@ CREATE TABLE IF NOT EXISTS `stock` (
     `quantity` int
 
 );
+
+ALTER TABLE `stock` ADD CONSTRAINT UQ_product_location UNIQUE (product, location)
