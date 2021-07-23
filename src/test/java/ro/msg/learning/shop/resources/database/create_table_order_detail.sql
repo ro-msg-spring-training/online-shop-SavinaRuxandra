@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `order_detail` (
 
 );
 
-ALTER TABLE `order_detail` ADD CONSTRAINT UQ_order_product UNIQUE (`orders`, product)
+ALTER TABLE `order_detail` ADD CONSTRAINT UQ_order_product UNIQUE (`order`, product)

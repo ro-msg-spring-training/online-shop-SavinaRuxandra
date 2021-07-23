@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ro.msg.learning.shop.model.Address;
 
-
 @Data
 @Builder
 @NoArgsConstructor

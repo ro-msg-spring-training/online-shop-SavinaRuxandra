@@ -2,6 +2,7 @@ package ro.msg.learning.shop.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +26,7 @@ public class Product extends BaseEntity<Integer> {
     @ManyToOne
     @JoinColumn(name="supplier")
     private Supplier supplier;
+    @Column(name = "image_url")
     private String imageUrl;
 
 }

@@ -1,11 +1,16 @@
 package ro.msg.learning.shop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 public class Address {
@@ -13,15 +18,7 @@ public class Address {
     private String country;
     private String city;
     private String county;
+    @Column(name = "street_address")
     private String streetAddress;
 
-    public Address(String country, String city, String county, String streetAddress) {
-        this.country = country;
-        this.city = city;
-        this.county = county;
-        this.streetAddress = streetAddress;
-    }
-
-    public Address() {
-    }
 }

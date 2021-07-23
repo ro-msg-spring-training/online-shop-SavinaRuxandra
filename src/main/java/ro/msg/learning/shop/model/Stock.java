@@ -1,7 +1,6 @@
 package ro.msg.learning.shop.model;
 
 import lombok.*;
-import org.springframework.data.util.Pair;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -16,9 +15,11 @@ import javax.persistence.ManyToOne;
 public class Stock extends BaseEntity<Integer> {
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name="product")
     private Product product;
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name="location")
     private Location location;
     private Integer quantity;

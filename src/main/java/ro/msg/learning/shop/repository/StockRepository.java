@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Integer> {
+
     List<Stock> findAllByProduct(Product product);
     List<Stock> findAllByProductAndLocation(Product product, Location location);
 }

@@ -2,8 +2,7 @@ package ro.msg.learning.shop.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,11 +10,14 @@ import javax.persistence.ManyToOne;
 @Data
 @Builder
 @Entity
+@Table(name = "order_detail")
 public class OrderDetail extends BaseEntity<Integer> {
 
     @ManyToOne
+    @JoinColumn(name = "orders")
     private Order order;
     @ManyToOne
+    @JoinColumn(name = "product")
     private Product product;
     private Integer quantity;
 

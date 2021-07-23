@@ -1,7 +1,6 @@
 package ro.msg.learning.shop.service.strategyFindLocation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.model.Location;
 import ro.msg.learning.shop.model.OrderDetail;
 import ro.msg.learning.shop.model.Product;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class MostAbundantLocationLocationStrategy implements LocationStrategy {
+public class MostAbundantLocationStrategy implements LocationStrategy {
 
     @Autowired
     private StockRepository stockRepository;

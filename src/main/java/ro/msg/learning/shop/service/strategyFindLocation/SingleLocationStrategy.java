@@ -1,10 +1,8 @@
 package ro.msg.learning.shop.service.strategyFindLocation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.model.Location;
 import ro.msg.learning.shop.model.OrderDetail;
-import ro.msg.learning.shop.model.Product;
 import ro.msg.learning.shop.model.Stock;
 import ro.msg.learning.shop.repository.LocationRepository;
 import ro.msg.learning.shop.repository.ProductRepository;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SingleLocationLocationStrategy implements LocationStrategy {
+public class SingleLocationStrategy implements LocationStrategy {
 
     @Autowired
     private ProductRepository productRepository;
@@ -47,7 +45,8 @@ public class SingleLocationLocationStrategy implements LocationStrategy {
                     long productCounter = location.getStocks().stream().filter(stock -> {
                         Integer productId = stock.getProduct().getId();
                         Integer quantityNeeded = orderDetails.stream()
-                                .filter(orderDetail -> orderDetail.getProduct().getId().equals(productId)).collect(Collectors.toList())
+                                .filter(orderDetail -> orderDetail.getProduct().getId().equals(productId))
+                                .collect(Collectors.toList())
                                 .get(0)
                                 .getQuantity();
                         return quantityNeeded != null && stock.getQuantity() >= quantityNeeded;

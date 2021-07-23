@@ -3,6 +3,7 @@ package ro.msg.learning.shop.model;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 @Data
 @Builder
 @Entity
+@Table(name = "product_category")
 public class ProductCategory extends BaseEntity<Integer> {
 
     private String name;

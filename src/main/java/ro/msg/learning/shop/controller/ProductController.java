@@ -5,10 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dto.ProductDto;
-import ro.msg.learning.shop.model.Product;
 import ro.msg.learning.shop.service.ProductService;
 
-@RequestMapping(value = "/products")
+@RequestMapping(value = "/api/products")
 @RestController
 public class ProductController {
 

@@ -1,10 +1,8 @@
 package ro.msg.learning.shop.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -13,12 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
 @Entity
 public class Location extends BaseEntity<Integer> {
 
     private String name;
+    @Embedded
     private Address address;
     @OneToMany(mappedBy = "location")
     private List<Stock> stocks;
-
 }

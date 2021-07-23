@@ -2,9 +2,7 @@ package ro.msg.learning.shop.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -13,15 +11,18 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
+@Table(name = "orders")
 public class Order extends BaseEntity<Integer> {
 
     @ManyToOne
-    @JoinColumn(name = "shippedForm")
+    @JoinColumn(name = "shipped_from")
     private Location shippedFrom;
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Embedded
     private Address address;
 
 }
