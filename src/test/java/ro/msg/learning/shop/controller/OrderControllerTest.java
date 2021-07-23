@@ -12,11 +12,9 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 import ro.msg.learning.shop.ShopApplication;
 import ro.msg.learning.shop.configuration.H2TestProfileConfig;
-import ro.msg.learning.shop.dto.AddressDto;
 import ro.msg.learning.shop.dto.OrderDto;
 
 import java.util.Map;
@@ -46,7 +44,6 @@ class OrderControllerTest {
         mvc.perform(MockMvcRequestBuilders
                 .post("/api/createOrder")
                 .content(asJsonString(OrderDto.builder()
-                        .address(AddressDto.builder().build())
                         .products(products)
                         .build())
                 )
@@ -64,7 +61,6 @@ class OrderControllerTest {
         mvc.perform(MockMvcRequestBuilders
                 .post("/api/createOrder")
                 .content(asJsonString(OrderDto.builder()
-                        .address(AddressDto.builder().build())
                         .products(products)
                         .build())
                 )

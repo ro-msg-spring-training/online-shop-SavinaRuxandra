@@ -1,18 +1,20 @@
 package ro.msg.learning.shop.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.msg.learning.shop.converter.ProductConverter;
 import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.service.ProductService;
 
+@AllArgsConstructor
 @RequestMapping(value = "/api/products")
 @RestController
 public class ProductController {
 
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
+    private final ProductConverter productConverter;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody ProductDto productDto) {
@@ -34,7 +36,7 @@ public class ProductController {
 
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Object> readByIdProduct(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(ProductDto.convertModelToDto(
+        return new ResponseEntity<>(productConverter.modelToDto(
                 productService.readByIdProduct(id)
         ), HttpStatus.OK
         );

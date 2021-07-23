@@ -28,7 +28,7 @@ class MostAbundantLocationStrategyTest {
     @Mock
     private StockRepository stockRepository;
     @InjectMocks
-    private LocationStrategy mostAbundantLocationStrategy = new MostAbundantLocationStrategy();
+    private MostAbundantLocationStrategy mostAbundantLocationStrategy;
 
     private Product PRODUCT1 = Product.builder().build();
     private Product PRODUCT2 = Product.builder().build();

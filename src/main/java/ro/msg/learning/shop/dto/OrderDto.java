@@ -1,27 +1,21 @@
 package ro.msg.learning.shop.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ro.msg.learning.shop.model.Order;
+import lombok.*;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDto {
+public class OrderDto extends BaseDto {
 
     private LocalDateTime createdAt;
-    private AddressDto address;
+    private String address_country;
+    private String address_city;
+    private String address_county;
+    private String address_streetAddress;
     private Map<Integer, Integer> products;
 
-    public static Order DtoToModel(OrderDto orderdto) {
-        return Order.builder()
-                .createdAt(orderdto.createdAt)
-                .address(AddressDto.DtoToModel(orderdto.address))
-                .build();
-    }
 }
