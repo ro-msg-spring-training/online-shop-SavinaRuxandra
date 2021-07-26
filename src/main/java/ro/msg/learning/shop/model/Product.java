@@ -1,15 +1,18 @@
 package ro.msg.learning.shop.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
 @Entity
 public class Product extends BaseEntity<Integer> {
 
@@ -23,18 +26,7 @@ public class Product extends BaseEntity<Integer> {
     @ManyToOne
     @JoinColumn(name="supplier")
     private Supplier supplier;
+    @Column(name = "image_url")
     private String imageUrl;
 
-    public Product(String name, String description, BigDecimal price, Double weight, ProductCategory category, Supplier supplier, String imageUrl) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.weight = weight;
-        this.category = category;
-        this.supplier = supplier;
-        this.imageUrl = imageUrl;
-    }
-
-    public Product() {
-    }
 }

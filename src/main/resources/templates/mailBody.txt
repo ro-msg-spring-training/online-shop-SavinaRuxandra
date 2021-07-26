@@ -1,0 +1,10 @@
+Hello #{customer.firstName},
+
+We received your order with id no #{id}. We will deliver your products as soon as possible!
+Have a good day! :)
+
+Details:
+Client: #{customer.firstName} #{customer.lastName}
+Username: #{customer.username}
+EmailAddress: #{customer.emailAddress}
+

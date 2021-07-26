@@ -1,34 +1,28 @@
 package ro.msg.learning.shop.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
 @Entity
+@Table(name = "orders")
 public class Order extends BaseEntity<Integer> {
 
     @ManyToOne
-    @JoinColumn(name = "shippedForm")
+    @JoinColumn(name = "shipped_from")
     private Location shippedFrom;
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Embedded
     private Address address;
 
-    public Order(Location shippedFrom, Customer customer, LocalDateTime createdAt, Address address) {
-        this.shippedFrom = shippedFrom;
-        this.customer = customer;
-        this.createdAt = createdAt;
-        this.address = address;
-    }
-
-    public Order() {
-    }
 }

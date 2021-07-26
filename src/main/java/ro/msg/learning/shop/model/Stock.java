@@ -1,22 +1,27 @@
 package ro.msg.learning.shop.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.data.util.Pair;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
 @Entity
-public class Stock extends BaseEntity<Pair<Product, Location>> {
+public class Stock extends BaseEntity<Integer> {
 
+    @ManyToOne
+    @ToString.Exclude
+    @JoinColumn(name="product")
+    private Product product;
+    @ManyToOne
+    @ToString.Exclude
+    @JoinColumn(name="location")
+    private Location location;
     private Integer quantity;
 
-    public Stock(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Stock() {
-    }
 }
