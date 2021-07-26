@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-@Profile({"security_basic"})
+@Profile("security_basic")
 @Configuration
 @EnableWebSecurity
 public class WebSecurityBasicConfig extends WebSecurityConfigurerAdapter {

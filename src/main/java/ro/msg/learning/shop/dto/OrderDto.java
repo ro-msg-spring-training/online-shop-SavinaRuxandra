@@ -12,6 +12,7 @@ import java.util.Map;
 public class OrderDto extends BaseDto {
 
     private LocalDateTime createdAt;
+    private CustomerDto customerDto;
     private String address_country;
     private String address_city;
     private String address_county;

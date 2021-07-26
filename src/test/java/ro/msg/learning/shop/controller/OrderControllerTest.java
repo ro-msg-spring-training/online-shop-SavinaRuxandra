@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import ro.msg.learning.shop.ShopApplication;
 import ro.msg.learning.shop.configuration.H2TestProfileConfig;
+import ro.msg.learning.shop.dto.CustomerDto;
 import ro.msg.learning.shop.dto.OrderDto;
 
 import java.util.Map;
@@ -26,8 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         ShopApplication.class,
         H2TestProfileConfig.class})
 @Transactional
-@TestPropertySource(
-        locations = "classpath:test_application.properties")
 @ActiveProfiles("test")
 @AutoConfigureMockMvc(addFilters = false)
 class OrderControllerTest {
@@ -40,10 +39,17 @@ class OrderControllerTest {
 
         Integer orderQuantity = 5;
         Map<Integer, Integer> products = Map.of(1,orderQuantity, 2, orderQuantity);
+        CustomerDto customerDto = CustomerDto.builder()
+                .firstName("Bob")
+                .lastName("Johnson")
+                .username("some user")
+                .emailAddress("bob@pleasework.com")
+                .build();
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/api/createOrder")
                 .content(asJsonString(OrderDto.builder()
+                        .customerDto(customerDto)
                         .products(products)
                         .build())
                 )
