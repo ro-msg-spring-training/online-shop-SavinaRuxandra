@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -39,6 +38,7 @@ class OrderControllerTest {
 
         Integer orderQuantity = 5;
         Map<Integer, Integer> products = Map.of(1,orderQuantity, 2, orderQuantity);
+
         CustomerDto customerDto = CustomerDto.builder()
                 .firstName("Bob")
                 .lastName("Johnson")
@@ -64,9 +64,17 @@ class OrderControllerTest {
         Integer orderQuantity = 50;
         Map<Integer, Integer> products = Map.of(1,orderQuantity, 2, orderQuantity);
 
+        CustomerDto customerDto = CustomerDto.builder()
+                .firstName("Bob")
+                .lastName("Johnson")
+                .username("some user")
+                .emailAddress("bob@pleasework.com")
+                .build();
+
         mvc.perform(MockMvcRequestBuilders
                 .post("/api/createOrder")
                 .content(asJsonString(OrderDto.builder()
+                        .customerDto(customerDto)
                         .products(products)
                         .build())
                 )

@@ -8,6 +8,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -34,25 +35,32 @@ public class MailHandlerService {
     @Value("${spring.mail.bodyPath}")
     private String bodyPath;
 
-    @Value("${spring.mail.textType}")
-    private String textType;
-
     private final JavaMailSender emailSender;
 
     public void sendOrderConfirmationMail(Order order) {
-        sendMail(order.getCustomer().getEmailAddress(), subject, bodyParser(order));
+        sendMail(order.getCustomer().getEmailAddress(), bodyParser(order));
     }
 
-    public void sendMail(String to, String subject, String body) {
-        if(textType.equals("text"))
-            sendMailPlain(to, subject, body);
-        else if(textType.equals("html"))
-            sendMailHtml(to, subject, body);
-        else
-            throw new MailHandlerException("Wrong type for body");
+    public void sendMail(String to, String body) {
+        try{
+            String extension = bodyPath.split("\\.")[1];
+
+            if(extension.equals("txt"))
+                sendMailPlain(to, body);
+            else if(extension.equals("html"))
+                sendMailHtml(to, body);
+            else
+                throw new MailHandlerException("Body extension not accepted");
+        }
+        catch (IndexOutOfBoundsException exception) {
+            throw new MailHandlerException("Invalid format for body path");
+        }
+        catch (MailHandlerException exception) {
+            throw new MailHandlerException(exception.getMessage());
+        }
     }
 
-    public void sendMailPlain(String to, String subject, String body) {
+    public void sendMailPlain(String to, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
         message.setTo(to);
@@ -61,7 +69,7 @@ public class MailHandlerService {
         emailSender.send(message);
     }
 
-    public void sendMailHtml(String to, String subject, String body) {
+    public void sendMailHtml(String to, String body) {
         MimeMessage message = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -70,7 +78,7 @@ public class MailHandlerService {
             helper.setSubject(subject);
             helper.setText(body, true);
             emailSender.send(message);
-        } catch (MessagingException e) {
+        } catch (MailException | MessagingException e) {
             throw new MailHandlerException("Could not send confirmation email");
         }
     }
